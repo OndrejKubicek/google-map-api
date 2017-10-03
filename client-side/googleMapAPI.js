@@ -73,7 +73,7 @@ GoogleMap.prototype = {
             scrollwheel: base.options.scrollable
         };
 
-        base.markerIcon = "http://"+window.location.hostname+"/images/google_map/map_pin.png";
+        base.markerIcon = "https://"+window.location.hostname+"/images/google_map/map_pin.png";
         base.searchCoordinatesInput = document.getElementById(base.options.searchCoordinatesInput);
 
         // Display a map on the page

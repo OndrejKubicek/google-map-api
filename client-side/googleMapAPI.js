@@ -86,8 +86,10 @@ GoogleMap.prototype = {
         base.map.setTilt(45);
         base.loadMarkers();
 
+
         if (base.options.geocode !== null)
         {
+            base.searchCoordinatesInput = document.getElementById(base.options.searchCoordinatesInput);
             base.doGeocode();
         }
 
@@ -98,7 +100,9 @@ GoogleMap.prototype = {
 
         if (base.options.useSearch)
         {
-            base.searchCoordinatesInput = document.getElementById(base.options.searchCoordinatesInput);
+            if (!base.searchCoordinatesInput)
+                base.searchCoordinatesInput = document.getElementById(base.options.searchCoordinatesInput);
+
             base.initAutocomplete();
         }
     },

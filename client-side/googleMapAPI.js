@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2015 Petr Olišar (http://olisar.eu)
+ *
+ * For the full copyright and license information, please view
+ * the file LICENSE.md that was distributed with this source code.
+ */
 
 var GoogleMap = GoogleMap || {};
 
@@ -74,7 +80,6 @@ GoogleMap.prototype = {
         };
 
         base.markerIcon = "https://"+window.location.hostname+"/images/google_map/map_pin.png";
-        base.searchCoordinatesInput = document.getElementById(base.options.searchCoordinatesInput);
 
         // Display a map on the page
         base.map = new google.maps.Map(base.element, mapOptions);
@@ -93,6 +98,7 @@ GoogleMap.prototype = {
 
         if (base.options.useSearch)
         {
+            base.searchCoordinatesInput = document.getElementById(base.options.searchCoordinatesInput);
             base.initAutocomplete();
         }
     },
@@ -428,6 +434,7 @@ GoogleMap.prototype = {
 
         geocoder.geocode( { 'address': locationToSearchFor }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
+
                 base.map.setCenter(results[0].geometry.location);
                 base.map.fitBounds(results[0].geometry.viewport);
 
@@ -438,8 +445,17 @@ GoogleMap.prototype = {
                         icon: base.markerIcon
                     });
                 }
+
+                var lat = results[0].geometry.location.lat();
+                var lng = results[0].geometry.location.lng();
+
+                if (base.options.useSearch)
+                    base.searchCoordinatesInput.value = lat+';'+lng;
             } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-                base.setMapCenter(latLng);
+                base.setMapCenter({
+                    'lat': base.options.geocode.coordinates[0],
+                    'lng': base.options.geocode.coordinates[1]
+                });
             }
         });
     },

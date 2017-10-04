@@ -395,7 +395,7 @@ GoogleMap.prototype = {
     {
         if ("icon" in option)
         {
-            var host = "http://"+window.location.hostname;
+            var host = "https://"+window.location.hostname;
             if( option['icon'] instanceof Object ) {
                 var icon = {
                     url: host+this.basePath + '/' + option['icon']['url']

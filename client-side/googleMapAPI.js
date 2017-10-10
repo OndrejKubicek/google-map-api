@@ -361,17 +361,15 @@ GoogleMap.prototype = {
         var base = this;
         var infoWindow = new google.maps.InfoWindow();
         var prevInfo = false;
+
         // Allow each marker to have an info window
         if (("message" in option))
         {
-
             google.maps.event.addListener(marker, 'click', function() {
                 if (prevInfo) {
-                    console.log('ifff');
                     prevInfo.close();
                 }
 
-                console.log(prevInfo);
                 prevInfo = infoWindow;
                 infoWindow.setContent('<div>'+option['message']+'</div>');
                 infoWindow.open(base.map, marker);
@@ -442,13 +440,13 @@ GoogleMap.prototype = {
                 base.map.setCenter(results[0].geometry.location);
                 base.map.fitBounds(results[0].geometry.viewport);
 
-                if (base.options.useSearch) {
-                    base.geocodeMarker = new google.maps.Marker({
-                        position: results[0].geometry.location,
-                        map: base.map,
-                        icon: base.markerIcon
-                    });
-                }
+                base.geocodeMarker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: base.map,
+                    icon: base.markerIcon,
+                });
+
+                base.doMessage({'message': results[0].address_components.short_name});
 
                 var lat = results[0].geometry.location.lat();
                 var lng = results[0].geometry.location.lng();
@@ -467,12 +465,10 @@ GoogleMap.prototype = {
     doGeocode: function(searchLocation) {
         var base = this;
 
-
         if (searchLocation) {
             base.processGeolocation(searchLocation, base);
             return;
         }
-
 
         if (base.options.geocode.hasOwnProperty('coordinates')) {
             var latLng = {
@@ -484,7 +480,7 @@ GoogleMap.prototype = {
                 base.searchCoordinatesInput.value =  latLng.lat+';'+latLng.lng;
         }
 
-        // location priority - if coordinates and location are present, search only by location
+        // location priority - if both coordinates and location are present, search only by location
         if (base.options.geocode.hasOwnProperty('location')) {
             base.processGeolocation(base.options.geocode.location, base);
         } else {
@@ -497,13 +493,16 @@ GoogleMap.prototype = {
 
         if (base.options.geocode.hasOwnProperty('coordinates')) {
             base.map.setCenter(latLng);
-            base.map.setZoom(4);
 
             base.geocodeMarker = new google.maps.Marker({
                 position: latLng,
                 map: base.map,
                 icon: base.markerIcon
             });
+
+            if (base.options.geocode.hasOwnProperty('message')) {
+                base.doMessage(base.options.geocode, base.geocodeMarker)
+            }
         }
     },
 

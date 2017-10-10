@@ -408,9 +408,10 @@ class MapAPI extends Control
      *
      * @param string $locationName Name of location to search for
      * @param array $coordinates Coordinates of location in [Lat, Lng] order
+     * @param string|null $message Message to be displayed in InfoText marker window
      * @return $this
      */
-    public function setGeocode(string $locationName = null, array $coordinates = null)
+    public function setGeocode(string $locationName = null, array $coordinates = null, string $message = null)
     {
         if (!is_null($locationName))
             $this->geocode = ['location' => $locationName];
@@ -420,6 +421,10 @@ class MapAPI extends Control
                 throw new InvalidArgumentException('coordinates must be array containing Latitude and Longitude coordinate in this order (' . gettype($coordinates) . ' of length ' . count($coordinates) . ' was given).');
 
             $this->geocode['coordinates'] = $coordinates;
+        }
+
+        if (!is_null($message)) {
+            $this->geocode['message'] = $message;
         }
 
         return $this;

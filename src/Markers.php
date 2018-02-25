@@ -2,13 +2,15 @@
 
 namespace Cestolino\GoogleAPI;
 
-use Nette\Object;
+use Nette\SmartObject;
 use Nette\Utils\Strings;
 use Cestolino\GoogleAPI\Marker\Icon;
 
 
-class Markers extends Object
+class Markers
 {
+
+    use SmartObject;
 
 	const DROP = 'DROP', BOUNCE = 'BOUNCE';
 

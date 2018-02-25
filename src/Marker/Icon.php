@@ -3,8 +3,12 @@
 namespace Cestolino\GoogleAPI\Marker;
 
 
-class Icon extends \Nette\Object
+use Nette\SmartObject;
+
+class Icon
 {
+
+    use SmartObject;
 
 	/**
 	 * @var string

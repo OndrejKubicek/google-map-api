@@ -1,6 +1,5 @@
 {
 	"name": "kubicek_o/google-map-api",
-	"type": "library",
 	"description": "Itengrating google maps to Nette",
 	"keywords": ["google","maps", "nette"],
 	"homepage": "https://bitbucket.org/kubicek_o/google-map-api",

@@ -1,20 +1,31 @@
 {
-	"name": "kubicek_o/google-map-api",
-	"description": "Itengrating google maps to Nette",
-	"keywords": ["google","maps", "nette"],
-	"homepage": "https://bitbucket.org/kubicek_o/google-map-api",
-	"license": "GPL-3.0",
-	"require": {
-		"php": ">=5.4.0"
-	},
-	"require-dev": {
-		"nette/nette": ">=2.1",
-		"nette/tester": "~1.6",
-		"squizlabs/php_codesniffer": "2.*"
-	},
-	"autoload": {
-		"psr-4": {
-			"Cestolino\\GoogleAPI\\": "src"
-		}
-	}
+  "name": "kubicek_o/google-map-api",
+  "type": "library",
+  "description": "Itengrating google maps to Nette",
+  "keywords": [
+    "google",
+    "maps",
+    "nette"
+  ],
+  "homepage": "https://bitbucket.org/kubicek_o/google-map-api",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Ondřej Kubíček",
+      "email": "ondrej.kubicek1@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "nette/nette": ">=2.1",
+    "nette/tester": "~1.6",
+    "squizlabs/php_codesniffer": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cestolino\\GoogleAPI\\": "src"
+    }
+  }
 }

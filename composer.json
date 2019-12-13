@@ -1,5 +1,6 @@
 {
   "name": "kubicek_o/google-map-api",
+  "version": "1.4",
   "type": "library",
   "description": "Itengrating google maps to Nette",
   "keywords": [
